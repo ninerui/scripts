@@ -1,13 +1,14 @@
 # 导入所需包
-import pandas as pd
 import re
-import parsel
 import time
+
+import pandas as pd
+import parsel
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 # 打开浏览器
 browser = webdriver.Chrome()
@@ -26,6 +27,7 @@ def login_taobao_acount():
         EC.element_to_be_clickable((By.CSS_SELECTOR, '#login-form > div.login-blocks.sns-login-links > a.alipay-login'))
     )
     log.click()
+
 
 # 定义函数搜索商品
 def search(key_word):
@@ -55,7 +57,8 @@ def get_products():
     shop_name = html.xpath('//div[@class="grid g-clearfix"]//div[@class="shop"]/a/span[2]/text()').extract()
     price = html.xpath('//div[@class="grid g-clearfix"]//div[contains(@class,"price")]/strong/text()').extract()
     purchase_num = [re.findall(r'<div class="deal-cnt">(.*?)</div>', i)
-                    for i in html.xpath('//div[@class="grid g-clearfix"]//div[@class="row row-1 g-clearfix"]').extract()]
+                    for i in
+                    html.xpath('//div[@class="grid g-clearfix"]//div[@class="row row-1 g-clearfix"]').extract()]
     location = html.xpath('//div[@class="grid g-clearfix"]//div[@class="location"]/text()').extract()
 
     # 存储数据
@@ -90,6 +93,7 @@ def next_page(page_number):
 
     return df_product
 
+
 # 获取所有页信息
 def main():
     try:
@@ -108,6 +112,7 @@ def main():
     finally:
         browser.close()
     return df_all
+
 
 # 从此处运行
 if __name__ == '__main__':
