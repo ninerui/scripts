@@ -1,0 +1,2 @@
+# train
+python main.py --phase train --dataset [type=str, selfie2anime/portrait/cat2dog/horse2zebra/vangogh2photo] --quant [type=bool, True/False] --commitment_cost [type=float, default=2.0] --quantization_layer [type=str, i.e. 123] --decay [type=float, default=0.85]
